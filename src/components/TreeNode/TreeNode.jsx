@@ -1,31 +1,38 @@
 import Tree from "components/Tree/Tree";
 import { useState } from "react";
 
-export default function TreeNode({ node }) {
-  const { children, label } = node;
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Box, Button, Typography } from "@mui/material";
 
-  const [showChildren, setShowChildren] = useState(false);
+export default function TreeNode({ node }) {
+    const { children, name } = node;
+      let button;
+
+    const [showChildren, setShowChildren] = useState(false);
 
     const handleClick = () => {
         setShowChildren(!showChildren);
     };
 
-    let button;
-    if (!children) {
-      button = <button disabled>12</button>;
-    } else {
-      button = <button onClick={handleClick}>123</button>
-    }
-    console.log(children)
+    if (children) {
+      button = <Button startIcon={<ExpandMoreIcon />}  onClick={handleClick}></Button>
+    };
+
+    if (showChildren) {
+      button = <Button startIcon={<ExpandMoreIcon sx={{color: '#ed0808'}} />}  onClick={handleClick}></Button>
+    };
+
+
+
   return (
-    <>
-      <div  style={{ marginBottom: "10px" }}>
-              {button}
-              <span>{label}</span>
-      </div>
-      <ul style={{ paddingLeft: "10px", borderLeft: "1px solid black" }}>
-        {showChildren && <Tree treeData={children} />}
-      </ul>
+      <>
+        <Box sx={{ mb: 2 }}>
+            {button}
+            <Typography variant="h7">{name}</Typography>             
+        </Box>
+        <ul style={{ paddingLeft: "5px", borderLeft: "1px solid black" }}>
+            {showChildren && <Tree treeData={children} />}
+        </ul>
     </>
   );
 }
