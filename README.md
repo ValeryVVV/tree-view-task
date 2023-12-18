@@ -41,4 +41,4 @@ The execution time is 2 hours;
 
 ## Link:
 
-[LINK:](https://valeryvvv.github.io/tree-view-task/)
+[LINK](https://valeryvvv.github.io/tree-view-task/)
